@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шкільна їдальня "Зірочка"</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Шкільна їдальня "Зірочка"</h1>
+    </header>
+
+    <!-- Профіль учня -->
+    <section class="profile-section">
+        <h2>Профіль учня</h2>
+        <div class="profile">
+            <p>Ім'я: <span id="user-name">Іван Петренко</span></p>
+            <p>Зірочки: <span id="user-stars-count">10</span></p>
+            <div id="user-stars-1" class="star-container"></div>
+        </div>
+    </section>
+
+    <!-- Магазин -->
+    <section class="shop-section">
+        <h2>Магазин</h2>
+        <div class="shop-items">
+            <div class="item">
+                <img src="/images/sandwich.png" alt="Сендвіч">
+                <p>Сендвіч - 5 зірочок</p>
+                <button onclick="addToCart('Сендвіч', 5)">Додати в кошик</button>
+            </div>
+            <div class="item">
+                <img src="/images/juice.png" alt="Сік">
+                <p>Сік - 3 зірочки</p>
+                <button onclick="addToCart('Сік', 3)">Додати в кошик</button>
+            </div>
+            <div class="item">
+                <img src="/images/cookie.png" alt="Печиво">
+                <p>Печиво - 2 зірочки</p>
+                <button onclick="addToCart('Печиво', 2)">Додати в кошик</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Кошик -->
+    <section class="cart-section">
+        <h2>Ваш кошик</h2>
+        <div id="cart-items"></div>
+        <p>Загальна кількість зірочок: <span id="cart-total">0</span></p>
+        <p id="error-message" class="error"></p> <!-- Повідомлення про помилку -->
+        <button onclick="placeOrder()">Замовити</button>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

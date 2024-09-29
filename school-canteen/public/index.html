@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шкільна їдальня</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f3ec78, #af4261);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        #menu-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            margin: 10px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: calc(30% - 20px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            background: #ff4081;
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        
+        button:hover {
+            background: #ff79b0;
+            transform: translateY(-2px);
+        }
+        
+        #cart-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: radial-gradient(circle, #ff8a00, #e52e71);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        #cart-button:hover {
+            transform: scale(1.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        #cart-page {
+            display: none;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fly-animation {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            border-radius: 5px;
+            transition: transform 1s ease, opacity 1s ease;
+            z-index: 999;
+            pointer-events: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="main-page">
+        <h1>Меню</h1>
+        <div id="menu-items"></div>
+        <button id="cart-button" onclick="goToCart()">Кошик (0)</button>
+        <div id="error-message" class="error-message"></div>
+    </div>
+
+    <div id="cart-page" style="display:none;">
+        <h1>Ваш кошик</h1>
+        <div id="cart-items"></div>
+        <div id="cart-total">Всього: 0 зірочок</div>
+        <button onclick="goBack()">Повернутися додому</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

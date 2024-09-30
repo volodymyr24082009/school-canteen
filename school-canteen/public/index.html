@@ -138,7 +138,128 @@
         <div id="cart-total">Всього: 0 зірочок</div>
         <button onclick="goBack()">Повернутися додому</button>
     </div>
+<script>
+    let cart = [];
 
-    <script src="script.js"></script>
+// Перевіряємо, чи є щось в Local Storage
+if (localStorage.getItem('cart')) {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    updateCartCounter(); // Оновлюємо лічильник при завантаженні
+}
+
+// Меню товарів
+const menuItems = [
+    { name: "Сендвіч з куркою", price: 5, description: "Сендвіч з куркою, свіжими овочами та соусом." },
+    { name: "Сендвіч з тунцем", price: 6, description: "Сендвіч з тунцем, листям салату та соусом." },
+    { name: "Вегетаріанський сендвіч", price: 4.5, description: "Сендвіч з свіжими овочами." },
+    { name: "Сендвіч з шинкою", price: 5.5, description: "Сендвіч з шинкою та сиром." },
+    { name: "Сендвіч з індичкою", price: 7, description: "Сендвіч з індичкою та авокадо." },
+];
+
+// Відображаємо товари меню
+function displayMenuItems() {
+    const menuContainer = document.getElementById('menu-items');
+    menuContainer.innerHTML = '';
+    menuItems.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.classList.add('item');
+        menuItem.innerHTML = `
+            <h2>${item.name}</h2>
+            <p>${item.price} зірочок</p>
+            <button onclick="addToCart('${item.name}', ${item.price}, this)">Додати до кошика</button>
+            <button onclick="viewDetails('${item.name}', ${item.price}, '${item.description}')">Деталі</button>
+        `;
+        menuContainer.appendChild(menuItem);
+    });
+}
+
+// Відображаємо деталі товару
+function viewDetails(name, price, description) {
+    alert(`Назва: ${name}\nЦіна: ${price} зірочок\nОпис: ${description}`);
+}
+
+// Оновлюємо відображення кошика
+function updateCartDisplay() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <span>${item.name} - ${item.price} зірочок</span>
+            <button onclick="removeFromCart(${index})">Видалити</button>
+        `;
+        cartItemsContainer.appendChild(cartItem);
+        total += item.price;
+    });
+
+    document.getElementById('cart-total').textContent = `Всього: ${total} зірочок`;
+    updateCartCounter();
+}
+
+// Додаємо товар до кошика
+function addToCart(name, price, button) {
+    cart.push({ name, price });
+    updateCartDisplay();
+    saveCartToLocalStorage(); // Зберігаємо в Local Storage
+
+    // Анімація
+    const flyItem = document.createElement('div');
+    flyItem.textContent = name;
+    flyItem.classList.add('fly-animation');
+    document.body.appendChild(flyItem);
+
+    const buttonRect = button.getBoundingClientRect();
+    flyItem.style.left = `${buttonRect.left + buttonRect.width / 2}px`;
+    flyItem.style.top = `${buttonRect.top + buttonRect.height / 2}px`;
+    
+    // Анімація переміщення до кнопки кошика
+    setTimeout(() => {
+        flyItem.style.transform = 'scale(0.5) translate(300px, 300px)';
+        flyItem.style.opacity = '0';
+    }, 100);
+
+    setTimeout(() => {
+        flyItem.remove();
+    }, 1000);
+}
+
+// Оновлюємо лічильник кошика
+function updateCartCounter() {
+    document.getElementById('cart-button').textContent = `Кошик (${cart.length})`;
+}
+
+// Зберігаємо кошик у Local Storage
+function saveCartToLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Видаляємо товар з кошика
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartDisplay();
+    saveCartToLocalStorage(); // Зберігаємо в Local Storage
+}
+
+// Перехід до кошика
+function goToCart() {
+    document.getElementById('main-page').classList.add('hidden');
+    document.getElementById('cart-page').classList.remove('hidden');
+    updateCartDisplay();
+}
+
+// Повернення назад на головну
+function goBack() {
+    document.getElementById('cart-page').classList.add('hidden');
+    document.getElementById('main-page').classList.remove('hidden');
+}
+
+// Відображаємо меню при завантаженні
+displayMenuItems();
+
+</script>
+    
 </body>
 </html>

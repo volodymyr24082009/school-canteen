@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Шкільна їдальня</title>
+    <title>Інноваційна шкільна їдальня</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #f3ec78, #af4261);
-            color: #fff;
+            background: linear-gradient(135deg, #4A90E2, #D5E1DF);
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             height: 100vh;
+            overflow: hidden;
         }
-        
+
         #menu-items {
             display: flex;
             flex-wrap: wrap;
@@ -26,25 +28,31 @@
             overflow-y: auto;
             padding: 20px;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s;
         }
-        
+
+        #menu-items:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+
         .item {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.6);
             padding: 15px;
             margin: 10px;
             border-radius: 12px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             width: calc(30% - 20px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        
+
         h1 {
             text-align: center;
             font-size: 2.5rem;
@@ -52,29 +60,30 @@
             text-transform: uppercase;
             letter-spacing: 3px;
         }
-        
+
         button {
             padding: 10px 15px;
             margin-top: 10px;
-            background: #ff4081;
+            background: #28a745;
             border: none;
             border-radius: 50px;
             color: #fff;
             font-size: 14px;
             cursor: pointer;
             transition: background 0.3s ease, transform 0.3s ease;
+            position: relative;
         }
-        
+
         button:hover {
-            background: #ff79b0;
+            background: #218838;
             transform: translateY(-2px);
         }
-        
+
         #cart-button {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: radial-gradient(circle, #ff8a00, #e52e71);
+            background: #007bff;
             color: #fff;
             padding: 15px 20px;
             border-radius: 50%;
@@ -83,53 +92,56 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         #cart-button:hover {
             transform: scale(1.2);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
-        
+
         #cart-page {
             display: none;
             padding: 40px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: opacity 0.5s ease;
         }
-        
-        .hidden {
+
+        img {
+            width: 100%; 
+            height: 150px; 
+            object-fit: cover; 
+            border-radius: 8px; 
+        }
+
+        .stars-count {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        #games-page {
             display: none;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: opacity 0.5s ease;
         }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        #stars-counter {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
         }
-        
-        .fly-animation {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 5px;
-            border-radius: 5px;
-            transition: transform 1s ease, opacity 1s ease;
-            z-index: 999;
-            pointer-events: none;
-        }
-        
     </style>
 </head>
 <body>
     <div id="main-page">
         <h1>Меню</h1>
+        <div id="stars-counter">Ваші зірочки: 0</div>
         <div id="menu-items"></div>
         <button id="cart-button" onclick="goToCart()">Кошик (0)</button>
-        <div id="error-message" class="error-message"></div>
+        <button onclick="goToGames()">Ігри</button>
     </div>
 
     <div id="cart-page" style="display:none;">
@@ -137,126 +149,183 @@
         <div id="cart-items"></div>
         <div id="cart-total">Всього: 0 зірочок</div>
         <button onclick="goBack()">Повернутися додому</button>
+        <button onclick="buyItems()">Купити</button>
     </div>
+
+    <div id="games-page">
+        <h1>Ігри</h1>
+        <div class="game">
+            <h2>Гра 1: Вгадай число</h2>
+            <p>Вгадайте число від 1 до 10. Якщо вгадаєте, отримуєте 2 зірочки!</p>
+            <button onclick="playGuessingGame()">Грати</button>
+            <div class="stars-count" id="stars-count-game1">Зірочки: 0</div>
+        </div>
+        <div class="game">
+            <h2>Гра 2: Картки на пам'ять</h2>
+            <p>Спробуйте знайти пари карток! Якщо знайдете, отримуєте 3 зірочки!</p>
+            <button onclick="playMemoryGame()">Грати</button>
+            <div class="stars-count" id="stars-count-game2">Зірочки: 0</div>
+        </div>
+        <div class="game">
+            <h2>Гра 3: Кидок кубика</h2>
+            <p>У вас є 3 спроби на день. Якщо вам випаде 6, ви отримаєте 5 зірочок!</p>
+            <button onclick="playDiceGame()">Грати</button>
+            <div class="stars-count" id="stars-count-game3">Зірочки: 0</div>
+        </div>
+        <button onclick="goBackFromGames()">Повернутися додому</button>
+    </div>
+
 <script>
     let cart = [];
+    let totalStars = 0; // Загальна кількість зірочок
+    let diceAttempts = 0; // Лічильник спроб для гри з кубиком
+    let starsGame1 = 0;
+    let starsGame2 = 0;
+    let starsGame3 = 0;
 
-// Перевіряємо, чи є щось в Local Storage
-if (localStorage.getItem('cart')) {
-    cart = JSON.parse(localStorage.getItem('cart'));
-    updateCartCounter(); // Оновлюємо лічильник при завантаженні
-}
+    // Перевіряємо, чи є щось в Local Storage
+    if (localStorage.getItem('cart')) {
+        cart = JSON.parse(localStorage.getItem('cart'));
+        updateCartCounter(); // Оновлюємо лічильник при завантаженні
+    }
 
-// Меню товарів
-const menuItems = [
-    { name: "Сендвіч з куркою", price: 5, description: "Сендвіч з куркою, свіжими овочами та соусом." },
-    { name: "Сендвіч з тунцем", price: 6, description: "Сендвіч з тунцем, листям салату та соусом." },
-    { name: "Вегетаріанський сендвіч", price: 4.5, description: "Сендвіч з свіжими овочами." },
-    { name: "Сендвіч з шинкою", price: 5.5, description: "Сендвіч з шинкою та сиром." },
-    { name: "Сендвіч з індичкою", price: 7, description: "Сендвіч з індичкою та авокадо." },
-];
+    // Меню товарів
+    const menuItems = [
+        { name: "Сендвіч з куркою", price: 5, description: "Сендвіч з куркою, свіжими овочами та соусом.", image: "https://cdn.meta.ua/meta_news/85/01002irt-858e_1280x720.jpeg" },
+        { name: "Сендвіч з тунцем", price: 6, description: "Сендвіч з тунцем, листям салату та соусом.", image: "https://i.obozrevatel.com/food/recipemain/2019/3/19/s1200.jpg?size=636x424" },
+        { name: "Вегетаріанський сендвіч", price: 4.5, description: "Сендвіч з свіжими овочами.", image: "https://kanapulka.com.ua/image/cache/catalog/recipe/veggie-sandwich/veggie-sandwich-1-1140x400.jpg" },
+        
+    ];
 
-// Відображаємо товари меню
-function displayMenuItems() {
-    const menuContainer = document.getElementById('menu-items');
-    menuContainer.innerHTML = '';
-    menuItems.forEach(item => {
-        const menuItem = document.createElement('div');
-        menuItem.classList.add('item');
-        menuItem.innerHTML = `
-            <h2>${item.name}</h2>
-            <p>${item.price} зірочок</p>
-            <button onclick="addToCart('${item.name}', ${item.price}, this)">Додати до кошика</button>
-            <button onclick="viewDetails('${item.name}', ${item.price}, '${item.description}')">Деталі</button>
-        `;
-        menuContainer.appendChild(menuItem);
-    });
-}
+    // Відображаємо меню
+    function displayMenuItems() {
+        const menuContainer = document.getElementById('menu-items');
+        menuItems.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'item';
+            div.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <h3>${item.name}</h3>
+                <p>${item.description}</p>
+                <p>Ціна: ${item.price} зірочок</p>
+                <button onclick="addToCart('${item.name}', ${item.price})">Додати до кошика</button>
+            `;
+            menuContainer.appendChild(div);
+        });
+    }
 
-// Відображаємо деталі товару
-function viewDetails(name, price, description) {
-    alert(`Назва: ${name}\nЦіна: ${price} зірочок\nОпис: ${description}`);
-}
+    displayMenuItems();
 
-// Оновлюємо відображення кошика
-function updateCartDisplay() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    cartItemsContainer.innerHTML = '';
-    let total = 0;
+    // Функції переходів між сторінками
+    function goToCart() {
+        document.getElementById('main-page').style.display = 'none';
+        document.getElementById('cart-page').style.display = 'block';
+        displayCartItems();
+    }
 
-    cart.forEach((item, index) => {
-        const cartItem = document.createElement('div');
-        cartItem.classList.add('cart-item');
-        cartItem.innerHTML = `
-            <span>${item.name} - ${item.price} зірочок</span>
-            <button onclick="removeFromCart(${index})">Видалити</button>
-        `;
-        cartItemsContainer.appendChild(cartItem);
-        total += item.price;
-    });
+    function goToGames() {
+        document.getElementById('main-page').style.display = 'none';
+        document.getElementById('games-page').style.display = 'block';
+    }
 
-    document.getElementById('cart-total').textContent = `Всього: ${total} зірочок`;
-    updateCartCounter();
-}
+    function goBack() {
+        document.getElementById('cart-page').style.display = 'none';
+        document.getElementById('main-page').style.display = 'block';
+    }
 
-// Додаємо товар до кошика
-function addToCart(name, price, button) {
-    cart.push({ name, price });
-    updateCartDisplay();
-    saveCartToLocalStorage(); // Зберігаємо в Local Storage
+    function goBackFromGames() {
+        document.getElementById('games-page').style.display = 'none';
+        document.getElementById('main-page').style.display = 'block';
+    }
 
-    // Анімація
-    const flyItem = document.createElement('div');
-    flyItem.textContent = name;
-    flyItem.classList.add('fly-animation');
-    document.body.appendChild(flyItem);
+    // Кошик
+    function addToCart(itemName, itemPrice) {
+        cart.push({ name: itemName, price: itemPrice });
+        totalStars += itemPrice; // Додаємо до загальної кількості зірочок
+        updateStarsCounter(); // Оновлюємо лічильник зірочок на головному екрані
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCounter();
+        alert(`${itemName} додано до кошика.`);
+    }
 
-    const buttonRect = button.getBoundingClientRect();
-    flyItem.style.left = `${buttonRect.left + buttonRect.width / 2}px`;
-    flyItem.style.top = `${buttonRect.top + buttonRect.height / 2}px`;
-    
-    // Анімація переміщення до кнопки кошика
-    setTimeout(() => {
-        flyItem.style.transform = 'scale(0.5) translate(300px, 300px)';
-        flyItem.style.opacity = '0';
-    }, 100);
+    function updateStarsCounter() {
+        document.getElementById('stars-counter').innerText = `Ваші зірочки: ${totalStars}`;
+    }
 
-    setTimeout(() => {
-        flyItem.remove();
-    }, 1000);
-}
+    function updateCartCounter() {
+        document.getElementById('cart-button').innerText = `Кошик (${cart.length})`;
+    }
 
-// Оновлюємо лічильник кошика
-function updateCartCounter() {
-    document.getElementById('cart-button').textContent = `Кошик (${cart.length})`;
-}
+    function displayCartItems() {
+        const cartContainer = document.getElementById('cart-items');
+        cartContainer.innerHTML = '';
+        cart.forEach(item => {
+            const div = document.createElement('div');
+            div.innerText = `${item.name} - ${item.price} зірочок`;
+            cartContainer.appendChild(div);
+        });
+        document.getElementById('cart-total').innerText = `Всього: ${totalStars} зірочок`;
+    }
 
-// Зберігаємо кошик у Local Storage
-function saveCartToLocalStorage() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
+    function buyItems() {
+        if (totalStars > 0) {
+            alert('Дякуємо за покупку!');
+            cart = [];
+            totalStars = 0;
+            localStorage.removeItem('cart');
+            updateStarsCounter(); // Оновлюємо лічильник зірочок після покупки
+            updateCartCounter();
+            displayCartItems();
+        } else {
+            alert('Ваш кошик порожній!');
+        }
+    }
 
-// Видаляємо товар з кошика
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCartDisplay();
-    saveCartToLocalStorage();
-}
+    // Ігри
+    function playGuessingGame() {
+        const userGuess = parseInt(prompt("Вгадайте число від 1 до 10:"));
+        const randomNumber = Math.floor(Math.random() * 10) + 1;
 
-// Перехід на сторінку кошика
-function goToCart() {
-    document.getElementById('main-page').style.display = 'none';
-    document.getElementById('cart-page').style.display = 'block';
-    updateCartDisplay();
-}
+        if (userGuess === randomNumber) {
+            starsGame1 += 2;
+            totalStars += 2; // Додаємо зірочки до загальної кількості
+            alert(`Вітаємо! Ви вгадали число ${randomNumber}. Ви отримали 2 зірочки!`);
+        } else {
+            alert(`На жаль, ви не вгадали. Правильне число ${randomNumber}.`);
+        }
+        document.getElementById('stars-count-game1').innerText = `Зірочки: ${starsGame1}`;
+        updateStarsCounter(); // Оновлюємо лічильник зірочок
+    }
 
-// Повернення на головну сторінку
-function goBack() {
-    document.getElementById('main-page').style.display = 'block';
-    document.getElementById('cart-page').style.display = 'none';
-}
+    function playMemoryGame() {
+        const pairsFound = Math.floor(Math.random() * 5); // Симуляція кількості знайдених пар
+        starsGame2 += pairsFound * 3; // 3 зірочки за кожну пару
+        totalStars += pairsFound * 3; // Додаємо зірочки до загальної кількості
+        alert(`Ви знайшли ${pairsFound} пар! Отримали ${pairsFound * 3} зірочок!`);
+        document.getElementById('stars-count-game2').innerText = `Зірочки: ${starsGame2}`;
+        updateStarsCounter(); // Оновлюємо лічильник зірочок
+    }
 
-displayMenuItems();
+    function playDiceGame() {
+        if (diceAttempts >= 3) {
+            alert('Ви вже використали всі спроби на сьогодні!');
+            return;
+        }
+
+        const diceRoll = Math.floor(Math.random() * 6) + 1;
+        diceAttempts++;
+
+        if (diceRoll === 6) {
+            starsGame3 += 5;
+            totalStars += 5; // Додаємо зірочки до загальної кількості
+            alert(`Ви кинули кубик і випало ${diceRoll}. Ви отримали 5 зірочок!`);
+        } else {
+            alert(`Ви кинули кубик і випало ${diceRoll}. Спробуйте ще раз!`);
+        }
+        document.getElementById('stars-count-game3').innerText = `Зірочки: ${starsGame3}`;
+        updateStarsCounter(); // Оновлюємо лічильник зірочок
+    }
+
 </script>
 </body>
 </html>

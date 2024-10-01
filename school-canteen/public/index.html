@@ -240,26 +240,23 @@ function saveCartToLocalStorage() {
 function removeFromCart(index) {
     cart.splice(index, 1);
     updateCartDisplay();
-    saveCartToLocalStorage(); // Зберігаємо в Local Storage
+    saveCartToLocalStorage();
 }
 
-// Перехід до кошика
+// Перехід на сторінку кошика
 function goToCart() {
-    document.getElementById('main-page').classList.add('hidden');
-    document.getElementById('cart-page').classList.remove('hidden');
+    document.getElementById('main-page').style.display = 'none';
+    document.getElementById('cart-page').style.display = 'block';
     updateCartDisplay();
 }
 
-// Повернення назад на головну
+// Повернення на головну сторінку
 function goBack() {
-    document.getElementById('cart-page').classList.add('hidden');
-    document.getElementById('main-page').classList.remove('hidden');
+    document.getElementById('main-page').style.display = 'block';
+    document.getElementById('cart-page').style.display = 'none';
 }
 
-// Відображаємо меню при завантаженні
 displayMenuItems();
-
 </script>
-    
 </body>
 </html>

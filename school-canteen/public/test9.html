@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест 9 класу</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Тест для 9 класу</h1>
+    <form id="test-form">
+        <ol>
+            <li>
+                <p>Питання 1: Яка основна складова атмосфери?</p>
+                <input type="text" name="question1" required>
+            </li>
+            <li>
+                <p>Питання 2: Що таке організм?</p>
+                <input type="text" name="question2" required>
+            </li>
+            <li>
+                <p>Питання 3: Хто написав "Майстра і Маргариту"?</p>
+                <input type="text" name="question3" required>
+            </li>
+            <li>
+                <p>Питання 4: Яка хімічна формула вуглекислого газу?</p>
+                <input type="text" name="question4" required>
+            </li>
+            <li>
+                <p>Питання 5: Яка річка найбільша в Україні?</p>
+                <input type="text" name="question5" required>
+            </li>
+            <li>
+                <p>Питання 6: Хто є автором "Тараса Бульби"?</p>
+                <input type="text" name="question6" required>
+            </li>
+            <li>
+                <p>Питання 7: Яка основна функція печінки?</p>
+                <input type="text" name="question7" required>
+            </li>
+            <li>
+                <p>Питання 8: Яка наука вивчає розвиток суспільства?</p>
+                <input type="text" name="question8" required>
+            </li>
+            <li>
+                <p>Питання 9: Яка формула для обчислення об’єму циліндра?</p>
+                <input type="text" name="question9" required>
+            </li>
+            <li>
+                <p>Питання 10: Яка столиця України?</p>
+                <input type="text" name="question10" required>
+            </li>
+            <li>
+                <p>Питання 11: Яка наука вивчає поведінку тварин?</p>
+                <input type="text" name="question11" required>
+            </li>
+            <li>
+                <p>Питання 12: Хто відкрив електрон?</p>
+                <input type="text" name="question12" required>
+            </li>
+        </ol>
+        <button type="submit">Перевірити</button>
+    </form>
+    <div id="result"></div>
+    <a href="index.html">На головну</a>
+    <div id="error-message" style="display:none;" class="error">
+        <button onclick="retryTest()">НЕПРАВИЛЬНО СПРОБУЙТЕ ЩЕ РАЗ 😞</button>
+    </div>
+    <script>
+        const correctAnswersArray = [
+    // Ваш масив правильних відповідей для 12 питань
+];
+
+function checkAnswers() {
+    let correctAnswers = 0;
+    const totalQuestions = 12;
+    const userAnswers = [];
+
+    // Збір відповідей користувача
+    for (let i = 1; i <= totalQuestions; i++) {
+        const answer = document.querySelector(`input[name="question${i}"]:checked`);
+        if (answer) {
+            userAnswers.push(answer.value);
+        } else {
+            userAnswers.push(""); // Додаємо пусту відповідь, якщо вибір не зроблено
+        }
+    }
+
+    // Перевірка відповідей
+    for (let i = 0; i < totalQuestions; i++) {
+        if (userAnswers[i] === correctAnswersArray[i]) {
+            correctAnswers++;
+        }
+    }
+
+    // Визначення знижки
+    let discount = (correctAnswers / totalQuestions) * 50; // максимум 50%
+    
+    // Виведення результатів
+    const resultElement = document.getElementById("result");
+    if (correctAnswers === totalQuestions) {
+        resultElement.textContent = `Вітаємо! Ви отримали знижку ${discount.toFixed(0)}% на товари в їдальні! 🎉`;
+        document.getElementById("error-message").style.display = "none"; // Сховати помилку
+    } else {
+        document.getElementById("error-message").style.display = "block"; // Показати помилку
+        resultElement.textContent = ""; // Сховати результат
+    }
+}
+
+function retryTest() {
+    document.getElementById("error-message").style.display = "none"; // Сховати помилку
+    // Додаткові дії для повторної спроби тесту, наприклад, очищення відповідей
+}
+
+        document.getElementById('test-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const answers = [
+                "Азот", // Питання 1
+                "Сукупність клітин і систем органів, що взаємодіють", // Питання 2
+                "Михайло Булгаков", // Питання 3
+                "CO₂", // Питання 4
+                "Дніпро", // Питання 5
+                "Гоголь", // Питання 6
+                "Очищення крові", // Питання 7
+                "Соціологія", // Питання 8
+                "V = πr²h", // Питання 9
+                "Київ", // Питання 10
+                "Етологія", // Питання 11
+                "Джеймс Чедвік" // Питання 12
+            ];
+
+            let score = 0;
+            const formData = new FormData(event.target);
+            for (let i = 0; i < answers.length; i++) {
+                const answer = formData.get(`question${i + 1}`).trim();
+                if (answer.toLowerCase() === answers[i].toLowerCase()) {
+                    score++;
+                }
+            }
+
+            const discount = Math.min((score / answers.length) * 100, 50); // Максимальна знижка 50%
+            document.getElementById('result').textContent = `Ваша знижка: ${discount}%.`;
+        });
+        function checkAnswers() {
+    let correctAnswers = 0;
+    const totalQuestions = 12;
+    const userAnswers = [];
+
+    // Збір відповідей користувача
+    for (let i = 1; i <= totalQuestions; i++) {
+        const answer = document.querySelector(`input[name="question${i}"]:checked`);
+        if (answer) {
+            userAnswers.push(answer.value);
+        } else {
+            userAnswers.push(""); // Додаємо пусту відповідь, якщо вибір не зроблено
+        }
+    }
+
+    // Перевірка відповідей
+    for (let i = 0; i < totalQuestions; i++) {
+        if (userAnswers[i] === correctAnswersArray[i]) {
+            correctAnswers++;
+        }
+    }
+
+    // Визначення знижки
+    let discount = (correctAnswers / totalQuestions) * 50; // максимум 50%
+    
+    // Виведення результатів
+    const resultElement = document.getElementById("result");
+    if (correctAnswers === totalQuestions) {
+        resultElement.textContent = `Вітаємо! Ви отримали знижку ${discount.toFixed(0)}% на товари в їдальні! 🎉`;
+        document.getElementById("error-message").style.display = "none"; // Сховати помилку
+    } else {
+        document.getElementById("error-message").style.display = "block"; // Показати помилку
+        resultElement.textContent = ""; // Сховати результат
+    }
+}
+
+    </script>
+</body>
+</html>

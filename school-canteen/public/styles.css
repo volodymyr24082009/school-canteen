@@ -2,12 +2,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif; /* Змінено на сучасний шрифт */
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460); /* Градієнт фону */
-    color: #ffffff; /* Білий текст для контрасту */
+    background: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460);
+    color: #ffffff;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
@@ -16,21 +16,83 @@ body {
     min-height: 100vh;
 }
 
-h1 {
-    margin-bottom: 20px;
-    font-size: 3rem; /* Збільшено розмір заголовка */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Тінь для заголовка */
+header {
+    background-color: #001f3f;
+    padding: 10px 0;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-weight: 600;
+    font-size: 1.5em;
+    color: #ffcc00;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 1em;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.dropdown-content {
+    display: none;
+    opacity: 0; /* Початкова прозорість */
+    transition: opacity 0.3s ease;
+}
+
+.dropdown-content.show {
+    display: block;
+    opacity: 1; /* Повна непрозорість при показі */
+    position: absolute;
+    background-color: #001f3f;
+    min-width: 250px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px 0;
+    margin-top: 10px;
 }
 
 form {
-    background: rgba(255, 255, 255, 0.1); /* Напівпрозорий фон */
-    backdrop-filter: blur(10px); /* Розмиття фону */
-    padding: 30px; /* Збільшено відступи */
-    border-radius: 12px; /* Збільшено радіус закруглення */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Збільшена тінь */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     width: 100%;
     max-width: 500px;
-    border: 2px solid #ffffff; /* Біле обрамлення */
+    border: 2px solid #ffffff;
 }
 
 ol {
@@ -44,60 +106,60 @@ li {
 
 input[type="text"] {
     width: 100%;
-    padding: 12px; /* Збільшено відступи */
-    border: 2px solid #9a8cfc; /* Лавандове обрамлення */
-    border-radius: 8px; /* Збільшено радіус закруглення */
-    font-size: 1.1rem; /* Збільшено шрифт */
-    transition: border-color 0.3s, box-shadow 0.3s; /* Додано анімацію тіні */
+    padding: 12px;
+    border: 2px solid #9a8cfc;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input[type="text"]:focus {
-    border-color: #7a6ff7; /* Трохи темніший лавандовий при фокусі */
+    border-color: #7a6ff7;
     outline: none;
-    box-shadow: 0 0 10px rgba(122, 111, 247, 0.5); /* Тінь при фокусі */
+    box-shadow: 0 0 10px rgba(122, 111, 247, 0.5);
 }
 
 button {
-    background-color: #9a8cfc; /* Лавандовий фон */
+    background-color: #9a8cfc;
     color: white;
     border: none;
-    border-radius: 8px; /* Збільшено радіус закруглення */
-    padding: 12px 20px; /* Збільшено відступи */
+    border-radius: 8px;
+    padding: 12px 20px;
     cursor: pointer;
     font-size: 1.2rem;
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; /* Додано анімацію тіні */
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
     width: 100%;
 }
 
 button:hover {
-    background-color: #7a6ff7; /* Трохи темніший лавандовий при наведенні */
+    background-color: #7a6ff7;
     transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(122, 111, 247, 0.7); /* Тінь при наведенні */
+    box-shadow: 0 4px 15px rgba(122, 111, 247, 0.7);
 }
 
 #result {
     margin-top: 20px;
     font-size: 1.5rem;
-    color: #2a9d8f; /* М'який зелений колір */
+    color: #2a9d8f;
 }
 
 a {
     display: inline-block;
     margin-top: 20px;
     text-decoration: none;
-    color: #ffffff; /* Білий текст для посилань */
+    color: #ffffff;
     font-size: 1rem;
-    transition: color 0.3s, transform 0.3s; /* Додано анімацію для посилань */
+    transition: color 0.3s, transform 0.3s;
 }
 
 a:hover {
-    color: #e76f51; /* Теплий помаранчевий колір при наведенні */
+    color: #e76f51;
     transform: scale(1.05);
 }
 
 @media (max-width: 600px) {
     h1 {
-        font-size: 2.5rem; /* Зменшено для маленьких екранів */
+        font-size: 2.5rem;
     }
 
     button {
@@ -114,45 +176,36 @@ a:hover {
     margin-top: 20px;
     text-align: center;
     padding: 15px;
-    border: 2px solid #f44336; /* Темно-червоний обрамлення */
-    background-color: rgba(255, 204, 203, 0.8); /* Світло-червоний фон з прозорістю */
-    border-radius: 12px; /* Збільшено радіус закруглення */
-    animation: shake 0.5s; /* Анімація трясіння */
+    border: 2px solid #f44336;
+    background-color: rgba(255, 204, 203, 0.8);
+    border-radius: 12px;
+    animation: shake 0.5s;
 }
 
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     20% { transform: translateX(-10px); }
     40% { transform: translateX(10px); }
-    60% { transform: translateX(-10px); }
-    80% { transform: translateX(10px); }
 }
 
-button {
-    background-color: #f44336; /* Темно-червоний фон для кнопки */
-}
-
-button:hover {
-    background-color: #d32f2f; /* Трохи темніший червоний при наведенні */
-}
 #countdown-container {
     margin-top: 20px;
-    background-color: #f0f8ff; /* Світло-блакитний фон */
+    background-color: #f0f8ff;
     border-radius: 10px;
     padding: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center; /* Вирівнювання тексту по центру */
+    text-align: center;
 }
 
 #countdown {
-    font-size: 2rem; /* Розмір шрифту */
-    color: #2a9d8f; /* Колір тексту */
-    font-weight: bold; /* Жирний шрифт */
-    transition: color 0.3s ease; /* Плавний перехід кольору */
+    font-size: 2rem;
+    color: #2a9d8f;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 #countdown-container h2 {
-    font-size: 1.5rem; /* Розмір заголовка */
-    color: #4a4e69; /* Колір заголовка */
-    margin-bottom: 10px; /* Відступ знизу заголовка */
+    font-size: 1.5rem;
+    color: #4a4e69;
+    margin-bottom: 10px;
 }

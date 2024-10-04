@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гра 2: Вгадай число</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <h1>Інноваційна шкільна їдальня</h1>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Головна</a></li>
+                <li><a href="#menu">Меню</a></li>
+                <li><a href="#games">Ігри</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" id="testsBtn">Тести</a>
+                    <div class="dropdown-content" id="testsMenu">
+                        <a href="test1.html">Тест для 1 класу</a>
+                        <a href="test2.html">Тест для 2 класу</a>
+                        <a href="test3.html">Тест для 3 класу</a>
+                        <a href="test4.html">Тест для 4 класу</a>
+                        <a href="test5.html">Тест для 5 класу</a>
+                        <a href="test6.html">Тест для 6 класу</a>
+                        <a href="test7.html">Тест для 7 класу</a>
+                        <a href="test8.html">Тест для 8 класу</a>
+                        <a href="test9.html">Тест для 9 класу</a>
+                        <a href="test10.html">Тест для 10 класу</a>
+                        <a href="test11.html">Тест для 11 класу</a>
+                    </div>
+                </li>
+                <li><a href="#cart">Кошик</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="content">
+    <h2>Гра 2: Вгадай число</h2>
+    <p>Вгадайте число від 1 до 100!</p>
+    <input type="number" id="guessInput" placeholder="Ваше число">
+    <button id="submitGuess">Перевірити</button>
+    <p id="resultMessage"></p>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const testsBtn = document.getElementById("testsBtn");
+        const testsMenu = document.getElementById("testsMenu");
+        const submitGuessButton = document.getElementById("submitGuess");
+        const resultMessage = document.getElementById("resultMessage");
+        const randomNumber = Math.floor(Math.random() * 100) + 1; // Генерація випадкового числа
+
+        testsBtn.addEventListener("click", function(event) {
+            event.preventDefault();
+            testsMenu.classList.toggle("show");
+        });
+
+        submitGuessButton.addEventListener("click", function() {
+            const userGuess = parseInt(document.getElementById("guessInput").value);
+            if (userGuess === randomNumber) {
+                resultMessage.textContent = "Вітаємо! Ви вгадали число!";
+            } else if (userGuess < randomNumber) {
+                resultMessage.textContent = "Загадане число більше.";
+            } else {
+                resultMessage.textContent = "Загадане число менше.";
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гра 1: Пам'ять</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #gameBoard {
+            display: grid;
+            grid-template-columns: repeat(4, 100px); /* 4 стовпці */
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 100px;
+            height: 100px;
+            background-color: #ffffff;
+            border: 2px solid #9a8cfc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: transparent;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .card.flipped {
+            color: #000; /* Відображати текст при відкритій картці */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <h1>Інноваційна шкільна їдальня</h1>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Головна</a></li>
+                <li><a href="#menu">Меню</a></li>
+                <li><a href="#games">Ігри</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" id="testsBtn">Тести</a>
+                    <div class="dropdown-content" id="testsMenu">
+                        <a href="test1.html">Тест для 1 класу</a>
+                        <a href="test2.html">Тест для 2 класу</a>
+                        <a href="test3.html">Тест для 3 класу</a>
+                        <a href="test4.html">Тест для 4 класу</a>
+                        <a href="test5.html">Тест для 5 класу</a>
+                        <a href="test6.html">Тест для 6 класу</a>
+                        <a href="test7.html">Тест для 7 класу</a>
+                        <a href="test8.html">Тест для 8 класу</a>
+                        <a href="test9.html">Тест для 9 класу</a>
+                        <a href="test10.html">Тест для 10 класу</a>
+                        <a href="test11.html">Тест для 11 класу</a>
+                    </div>
+                </li>
+                <li><a href="#cart">Кошик</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="content">
+    <h2>Гра 1: Пам'ять</h2>
+    <p>Запам'ятайте порядок карток!</p>
+    <button id="startGame">Розпочати гру</button>
+    <div id="gameBoard"></div>
+    <p id="resultMessage"></p>
+</div>
+
+<script>
+    const cardValues = [1, 2, 3, 4, 5, 6, 7, 8];
+    let cards = [...cardValues, ...cardValues]; // Створюємо пари
+    let firstCard = null;
+    let secondCard = null;
+    let lockBoard = false;
+
+    function shuffle(array) {
+        array.sort(() => Math.random() - 0.5);
+    }
+
+    function createBoard() {
+        shuffle(cards);
+        const gameBoard = document.getElementById("gameBoard");
+        gameBoard.innerHTML = ''; // Очищаємо дошку
+
+        cards.forEach(value => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.setAttribute("data-value", value);
+            card.addEventListener("click", flipCard);
+            gameBoard.appendChild(card);
+        });
+    }
+
+    function flipCard() {
+        if (lockBoard) return;
+        this.classList.add("flipped");
+        this.textContent = this.getAttribute("data-value");
+
+        if (!firstCard) {
+            firstCard = this;
+        } else {
+            secondCard = this;
+            lockBoard = true;
+
+            checkForMatch();
+        }
+    }
+
+    function checkForMatch() {
+        if (firstCard.getAttribute("data-value") === secondCard.getAttribute("data-value")) {
+            resetCards();
+        } else {
+            setTimeout(() => {
+                firstCard.classList.remove("flipped");
+                firstCard.textContent = "";
+                secondCard.classList.remove("flipped");
+                secondCard.textContent = "";
+                resetCards();
+            }, 1000);
+        }
+    }
+
+    function resetCards() {
+        [firstCard, secondCard] = [null, null];
+        lockBoard = false;
+    }
+
+    document.getElementById("startGame").addEventListener("click", function() {
+        createBoard();
+        document.getElementById("gameBoard").style.display = 'grid';
+        document.getElementById("resultMessage").textContent = '';
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const testsBtn = document.getElementById("testsBtn");
+        const testsMenu = document.getElementById("testsMenu");
+
+        testsBtn.addEventListener("click", function(event) {
+            event.preventDefault();
+            testsMenu.classList.toggle("show");
+        });
+    });
+</script>
+
+</body>
+</html>

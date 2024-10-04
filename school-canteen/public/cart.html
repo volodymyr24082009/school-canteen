@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кошик</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <h1>Інноваційна шкільна їдальня</h1>
+        <nav>
+            <ul>
+                <li><a href="./index.html">Головна</a></li>
+                <li><a href="#menu">Меню</a></li>
+                <li><a href="#games">Ігри</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn" id="testsBtn">Тести</a>
+                    <div class="dropdown-content" id="testsMenu">
+                        <a href="test1.html">Тест для 1 класу</a>
+                        <a href="test2.html">Тест для 2 класу</a>
+                        <a href="test3.html">Тест для 3 класу</a>
+                        <a href="test4.html">Тест для 4 класу</a>
+                        <a href="test5.html">Тест для 5 класу</a>
+                        <a href="test6.html">Тест для 6 класу</a>
+                        <a href="test7.html">Тест для 7 класу</a>
+                        <a href="test8.html">Тест для 8 класу</a>
+                        <a href="test9.html">Тест для 9 класу</a>
+                        <a href="test10.html">Тест для 10 класу</a>
+                        <a href="test11.html">Тест для 11 класу</a>
+                    </div>
+                </li>
+                <li><a href="#cart">Кошик</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="content">
+    <h2>Ваш Кошик</h2>
+    <p>Товари, які ви обрали:</p>
+    <ul id="cart-items">
+        <li>Сендвіч 1 - 10 зірочок <button class="remove">Видалити</button></li>
+        <li>Сендвіч 2 - 10 зірочок <button class="remove">Видалити</button></li>
+    </ul>
+    <p>Загальна кількість зірочок: <span id="total-stars">20</span></p>
+    <button id="checkout">Оформити замовлення</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const testsBtn = document.getElementById("testsBtn");
+        const testsMenu = document.getElementById("testsMenu");
+
+        testsBtn.addEventListener("click", function(event) {
+            event.preventDefault();
+            testsMenu.classList.toggle("show");
+        });
+
+        // Обробка видалення товарів
+        const removeButtons = document.querySelectorAll('.remove');
+        removeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const listItem = this.parentElement;
+                listItem.remove();
+                updateTotal();
+            });
+        });
+
+        // Оновлення загальної кількості зірочок
+        function updateTotal() {
+            const cartItems = document.querySelectorAll('#cart-items li');
+            let total = 0;
+            cartItems.forEach(item => {
+                // Замість парсингу, можна використовувати дані атрибутів
+                total += 10; // Припустимо, кожен товар коштує 10 зірочок
+            });
+            document.getElementById('total-stars').innerText = total;
+        }
+    });
+</script>
+
+</body>
+</html>

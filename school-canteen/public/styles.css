@@ -2,20 +2,25 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+<<<<<<< Updated upstream
     font-family: 'Roboto', sans-serif;
 }
 
 body {
     background: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460);
+=======
+    font-family: 'Roboto', sans-serif; /* Сучасний шрифт */
+}
+
+body {
+    background: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460); /* Градієнт фону */
+>>>>>>> Stashed changes
     color: #ffffff;
     line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     min-height: 100vh;
 }
 
+<<<<<<< Updated upstream
 header {
     background-color: #001f3f;
     padding: 10px 0;
@@ -93,17 +98,95 @@ form {
     width: 100%;
     max-width: 500px;
     border: 2px solid #ffffff;
+=======
+/* Головне меню */
+nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 10px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+>>>>>>> Stashed changes
 }
 
-ol {
-    margin: 0;
-    padding-left: 20px;
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
 }
 
-li {
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    transition: background-color 0.3s, border-radius 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Футер */
+footer {
+    background-color: #0f3460;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+footer a {
+    color: #9a8cfc;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #e76f51;
+}
+
+/* Картки товарів */
+.product-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    width: 250px;
+    padding: 20px;
+    margin: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 10px;
     margin-bottom: 15px;
 }
 
+<<<<<<< Updated upstream
 input[type="text"] {
     width: 100%;
     padding: 12px;
@@ -131,11 +214,26 @@ input.incorrect {
 }
 
 button {
+=======
+.product-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.product-card p {
+    color: #ecf0f1;
+    margin-bottom: 15px;
+}
+
+.product-card button {
+>>>>>>> Stashed changes
     background-color: #9a8cfc;
     color: white;
     border: none;
     border-radius: 8px;
     padding: 12px 20px;
+<<<<<<< Updated upstream
     cursor: pointer;
     font-size: 1.2rem;
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
@@ -143,11 +241,21 @@ button {
 }
 
 button:hover {
+=======
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+}
+
+.product-card button:hover {
+>>>>>>> Stashed changes
     background-color: #7a6ff7;
     transform: scale(1.05);
     box-shadow: 0 4px 15px rgba(122, 111, 247, 0.7);
 }
 
+<<<<<<< Updated upstream
 #result {
     margin-top: 20px;
     font-size: 1.5rem;
@@ -166,21 +274,55 @@ a {
 a:hover {
     color: #e76f51;
     transform: scale(1.05);
+=======
+/* Фонові елементи */
+#background-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
-@media (max-width: 600px) {
+#background-elements .circle {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+>>>>>>> Stashed changes
+}
+
+/* Медіа-запити */
+@media (max-width: 768px) {
     h1 {
         font-size: 2.5rem;
     }
 
-    button {
-        font-size: 1rem;
+    .product-card {
+        width: 100%;
     }
 
-    #result {
-        font-size: 1.2rem;
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
     }
 }
+<<<<<<< Updated upstream
 
 /* Стилі для повідомлення про помилку */
 #error-message {
@@ -220,3 +362,5 @@ a:hover {
     color: #4a4e69;
     margin-bottom: 10px;
 }
+=======
+>>>>>>> Stashed changes

@@ -118,6 +118,17 @@ input[type="text"]:focus {
     outline: none;
     box-shadow: 0 0 10px rgba(122, 111, 247, 0.5);
 }
+input.correct {
+    border-color: #28a745;
+    background-color: #d4edda;
+    color: #155724;
+}
+
+input.incorrect {
+    border-color: #dc3545;
+    background-color: #f8d7da;
+    color: #721c24;
+}
 
 button {
     background-color: #9a8cfc;

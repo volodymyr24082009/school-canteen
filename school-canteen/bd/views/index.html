@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформлення замовлення</title>
+</head>
+<body>
+    <h1>Оформлення замовлення</h1>
+    <form action="/order" method="POST">
+        <label for="name">Ім'я:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="email">Електронна пошта:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="items">Товари:</label>
+        <textarea id="items" name="items" required></textarea><br>
+
+        <label for="total">Загальна сума:</label>
+        <input type="text" id="total" name="total" required><br>
+
+        <button type="submit">Відправити замовлення</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ваш гаманець</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <h1>Інноваційна шкільна їдальня</h1>
+        <nav>
+          <ul>
+            <li><a href="./index.html">Головна</a></li>
+            <li><a href="#menu">Меню</a></li>
+            <li><a href="#games">Ігри</a></li>
+            <li><a href="#tests">Тести</a></li>
+            <li><a href="./wallet.html">Ваш гаманець</a></li>
+            <!-- Нове посилання на ваш гаманець -->
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <h1>Ваш гаманець</h1>
+
+    <div class="wallet-container">
+      <h2>Ваші зірочки:</h2>
+      <div id="stars">0</div>
+      <!-- Лічильник зірочок -->
+
+      <h2>Ваша знижка:</h2>
+      <div id="discount">0%</div>
+      <!-- Лічильник знижки -->
+    </div>
+    <script>
+      // Зчитування зірочок і знижки з localStorage
+      let stars = parseInt(localStorage.getItem("stars")) || 0; // Отримуємо зірочки
+      let discount = parseInt(localStorage.getItem("discount")) || 0; // Отримуємо знижку
+
+      // Виведення зірочок та знижки на сторінці "Ваш гаманець"
+      document.getElementById("stars").textContent = stars;
+      document.getElementById("discount").textContent = discount + "%";
+    </script>
+    <footer>
+      <p>&copy; 2024 Інноваційна шкільна їдальня</p>
+    </footer>
+  </body>
+</html>

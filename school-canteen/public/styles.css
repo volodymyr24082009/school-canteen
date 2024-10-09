@@ -2,34 +2,30 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-<<<<<<< Updated upstream
-    font-family: 'Roboto', sans-serif;
-}
-
-body {
-    background: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460);
-=======
-    font-family: 'Roboto', sans-serif; /* Сучасний шрифт */
+    font-family: 'Roboto', sans-serif; /* Змінено на сучасний шрифт */
 }
 
 body {
     background: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460); /* Градієнт фону */
->>>>>>> Stashed changes
-    color: #ffffff;
+    color: #ffffff; /* Білий текст для контрасту */
     line-height: 1.6;
     min-height: 100vh;
 }
 
-<<<<<<< Updated upstream
 header {
     background-color: #001f3f;
-    padding: 10px 0;
+    padding: 20px 0;
     color: #fff;
     text-align: center;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    transition: background-color 0.3s; /* Анімація для фону */
+}
+
+header:hover {
+    background-color: rgba(0, 31, 63, 0.9); /* Зміна кольору при наведенні */
 }
 
 .header-container {
@@ -42,9 +38,19 @@ header {
 
 header h1 {
     font-weight: 600;
-    font-size: 1.5em;
+    font-size: 1.8em; /* Збільшено розмір заголовка */
     color: #ffcc00;
     margin: 0;
+    animation: bounce 1s infinite alternate; /* Анімація заголовка */
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
 }
 
 nav ul {
@@ -55,312 +61,182 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
 nav ul li a {
-    color: #ffcc00;
     text-decoration: none;
+    color: #ffcc00;
     font-weight: 300;
     font-size: 1em;
+    transition: color 0.3s; /* Анімація для кольору */
 }
 
 nav ul li a:hover {
     text-decoration: underline;
+    color: #ff5733; /* Колір при наведенні */
 }
 
-.dropdown-content {
-    display: none;
-    opacity: 0; /* Початкова прозорість */
-    transition: opacity 0.3s ease;
+/* Відступ для основного контенту */
+.container {
+    margin: 120px auto; /* Збільшено відступ зверху, щоб текст не закривався навігацією */
+    padding: 20px;
+    max-width: 1200px;
+    text-align: center;
 }
 
-.dropdown-content.show {
-    display: block;
-    opacity: 1; /* Повна непрозорість при показі */
-    position: absolute;
-    background-color: #001f3f;
-    min-width: 250px;
-    max-height: 200px;
-    overflow-y: auto;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    padding: 10px 0;
-    margin-top: 10px;
+.wallet {
+    margin-bottom: 20px;
+}
+
+.wallet h2 {
+    font-size: 1.5em;
+}
+
+.timer {
+    margin: 20px 0;
+}
+
+.timer h2 {
+    font-size: 1.5em;
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.1); /* Напівпрозорий фон */
+    backdrop-filter: blur(10px); /* Розмиття фону */
+    padding: 30px; /* Збільшено відступи */
+    border-radius: 12px; /* Збільшено радіус закруглення */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Збільшена тінь */
+    width: 100%;
+    max-width: 600px; /* Максимальна ширина */
+    margin: 50px auto; /* Додаємо відступ зверху та центрування */
+    transition: transform 0.3s; /* Додано анімацію */
+}
+
+.form-container:hover {
+    transform: scale(1.02); /* Збільшення при наведенні */
 }
 
 form {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    max-width: 500px;
-    border: 2px solid #ffffff;
-=======
-/* Головне меню */
-nav {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 10px 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
->>>>>>> Stashed changes
-}
-
-nav ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-}
-
-nav ul li {
-    margin: 0 20px;
-}
-
-nav ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    transition: background-color 0.3s, border-radius 0.3s;
-}
-
-nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-}
-
-/* Футер */
-footer {
-    background-color: #0f3460;
-    padding: 20px;
-    text-align: center;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-footer p {
-    color: #ffffff;
-    font-size: 1rem;
-}
-
-footer a {
-    color: #9a8cfc;
-    text-decoration: none;
-    margin: 0 10px;
-    transition: color 0.3s;
-}
-
-footer a:hover {
-    color: #e76f51;
-}
-
-/* Картки товарів */
-.product-card {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    width: 250px;
-    padding: 20px;
-    margin: 15px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 15px; /* Відступ між питаннями */
 }
 
-.product-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-}
-
-.product-card img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-<<<<<<< Updated upstream
 input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #9a8cfc;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    padding: 10px; /* Внутрішній відступ */
+    border: 2px solid #ffcc00; /* Жовта рамка */
+    border-radius: 5px; /* Закруглення */
+    font-size: 1em; /* Розмір шрифту */
+    transition: border-color 0.3s; /* Анімація зміни кольору рамки */
 }
 
 input[type="text"]:focus {
-    border-color: #7a6ff7;
-    outline: none;
-    box-shadow: 0 0 10px rgba(122, 111, 247, 0.5);
-}
-input.correct {
-    border-color: #28a745;
-    background-color: #d4edda;
-    color: #155724;
-}
-
-input.incorrect {
-    border-color: #dc3545;
-    background-color: #f8d7da;
-    color: #721c24;
+    border-color: #ff5733; /* Зміна кольору рамки при фокусі */
+    outline: none; /* Прибираємо обведення */
 }
 
 button {
-=======
-.product-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #ffffff;
-}
-
-.product-card p {
-    color: #ecf0f1;
-    margin-bottom: 15px;
-}
-
-.product-card button {
->>>>>>> Stashed changes
-    background-color: #9a8cfc;
+    background-color: #9a8cfc; /* Лавандовий фон */
     color: white;
     border: none;
-    border-radius: 8px;
-    padding: 12px 20px;
-<<<<<<< Updated upstream
+    border-radius: 8px; /* Збільшено радіус закруглення */
+    padding: 12px 20px; /* Збільшено відступи */
     cursor: pointer;
     font-size: 1.2rem;
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-    width: 100%;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Додано анімацію тіні */
 }
 
 button:hover {
-=======
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    width: 100%;
-}
-
-.product-card button:hover {
->>>>>>> Stashed changes
-    background-color: #7a6ff7;
+    background-color: #7a6ff7; /* Трохи темніший лавандовий при наведенні */
     transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(122, 111, 247, 0.7);
+    box-shadow: 0 4px 15px rgba(122, 111, 247, 0.7); /* Тінь при наведенні */
 }
 
-<<<<<<< Updated upstream
+.results {
+    margin-top: 20px;
+}
+
 #result {
-    margin-top: 20px;
     font-size: 1.5rem;
-    color: #2a9d8f;
+    color: #2a9d8f; /* М'який зелений колір */
 }
 
-a {
-    display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 1rem;
-    transition: color 0.3s, transform 0.3s;
+#detailed-results {
+    white-space: pre-wrap;
+    text-align: left; /* Вирівнювання тексту по лівому краю */
 }
 
-a:hover {
-    color: #e76f51;
-    transform: scale(1.05);
-=======
-/* Фонові елементи */
-#background-elements {
-    position: absolute;
+.correct {
+    background-color: #4caf50; /* Зелений фон для правильних відповідей */
+    color: #fff;
+}
+
+.incorrect {
+    background-color: #f44336; /* Червоний фон для неправильних відповідей */
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.2em; /* Зменшено для маленьких екранів */
+    }
+}
+
+#overlay {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
+    background-color: rgba(255, 0, 0, 0.7); /* Червоний фон з прозорістю */
+    display: none; /* Сховати за замовчуванням */
+    align-items: center; /* Центрування контенту */
+    justify-content: center; /* Центрування контенту */
+    z-index: 2000; /* Залишити поверх інших елементів */
 }
 
-#background-elements .circle {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
-    animation: float 6s ease-in-out infinite;
+#overlay h2 {
+    color: white; /* Колір тексту */
+    font-size: 2em; /* Розмір шрифту */
+    text-align: center; /* Центрування тексту */
+}
+.blinking {
+    animation: blink 1s infinite; /* Анімація блимання */
 }
 
-@keyframes float {
+@keyframes blink {
     0%, 100% {
-        transform: translateY(0);
+        opacity: 1; /* Нормальна прозорість */
     }
     50% {
-        transform: translateY(-30px);
-    }
->>>>>>> Stashed changes
-}
-
-/* Медіа-запити */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    .product-card {
-        width: 100%;
-    }
-
-    nav ul {
-        flex-direction: column;
-    }
-
-    nav ul li {
-        margin: 10px 0;
+        opacity: 0; /* Зникнення */
     }
 }
-<<<<<<< Updated upstream
-
-/* Стилі для повідомлення про помилку */
-#error-message {
-    margin-top: 20px;
-    text-align: center;
-    padding: 15px;
-    border: 2px solid #f44336;
-    background-color: rgba(255, 204, 203, 0.8);
-    border-radius: 12px;
-    animation: shake 0.5s;
+.timer {
+    position: fixed; /* Закріплюємо таймер на екрані */
+    top: 80px; /* Збільшено відступ від верхньої частини */
+    left: 20px; /* Відступ від лівого краю */
+    background: rgba(255, 255, 255, 0.2); /* Напівпрозорий фон */
+    border-radius: 10px; /* Закруглені кути */
+    padding: 10px 20px; /* Внутрішній відступ */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Тінь */
+    color: #ffffff; /* Білий текст */
+    font-size: 1.5em; /* Розмір шрифту */
+    transition: background-color 0.3s; /* Анімація для фону */
+    z-index: 1001; /* Вищий порядок, ніж інші елементи */
 }
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20% { transform: translateX(-10px); }
-    40% { transform: translateX(10px); }
+.blinking {
+    animation: blink 1s infinite; /* Анімація блимання */
 }
 
-#countdown-container {
-    margin-top: 20px;
-    background-color: #f0f8ff;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
+@keyframes blink {
+    0%, 100% {
+        opacity: 1; /* Нормальна прозорість */
+    }
+    50% {
+        opacity: 0; /* Зникнення */
+    }
 }
 
-#countdown {
-    font-size: 2rem;
-    color: #2a9d8f;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-#countdown-container h2 {
-    font-size: 1.5rem;
-    color: #4a4e69;
-    margin-bottom: 10px;
-}
-=======
->>>>>>> Stashed changes

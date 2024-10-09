@@ -1,212 +1,157 @@
-<!-- test1.html -->
 <!DOCTYPE html>
 <html lang="uk">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Тест 1 класу</title>
     <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <h1>Тест для 1 класу</h1>
+    <style>
+        /* Додайте ці стилі до вашого CSS */
+
+        /* Стилі для напівпрозорого фону при завершенні тесту */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 0, 0, 0.7); /* Червоний фон з прозорістю */
+            display: none; /* Сховати за замовчуванням */
+            align-items: center; /* Центрування контенту */
+            justify-content: center; /* Центрування контенту */
+            z-index: 2000; /* Залишити поверх інших елементів */
+        }
+
+        #overlay h2 {
+            color: white; /* Колір тексту */
+            font-size: 2em; /* Розмір шрифту */
+            text-align: center; /* Центрування тексту */
+        }
+        
+    </style>
+</head>
+<body>
     <header>
-      <div class="header-container">
-        <h1>Інноваційна шкільна їдальня</h1>
-        <nav>
-          <ul>
-            <li><a href="./index.html">Головна</a></li>
-            <li><a href="#menu">Меню</a></li>
-            <li><a href="#games">Ігри</a></li>
-            <li><a href="#tests">Тести</a></li>
-            <li><a href="#cart">Кошик</a></li>
-          </ul>
-        </nav>
-      </div>
+        <div class="header-container">
+            <h1>Інноваційна шкільна їдальня</h1>
+            <nav>
+                <ul>
+                    <li><a href="./index.html">Головна</a></li>
+                    <li><a href="#menu">Меню</a></li>
+                    <li><a href="#games">Ігри</a></li>
+                    <li><a href="./wallet.html">Ваш гаманець</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <form id="test-form">
-      <ol>
-        <li>
-          <p>Питання 1: Яка столиця України?</p>
-          <input type="text" name="question1" required />
-        </li>
-        <li>
-          <p>Питання 2: Яка річка є найбільшою в Україні?</p>
-          <input type="text" name="question2" required />
-        </li>
-        <li>
-          <p>Питання 3: Яка національна валюта України?</p>
-          <input type="text" name="question3" required />
-        </li>
-        <li>
-          <p>Питання 4: Яка найбільша гора України?</p>
-          <input type="text" name="question4" required />
-        </li>
-        <li>
-          <p>Питання 5: Яка відстань між Києвом та Львовом?</p>
-          <input type="text" name="question5" required />
-        </li>
-        <li>
-          <p>Питання 6: Яка основна мова в Україні?</p>
-          <input type="text" name="question6" required />
-        </li>
-        <li>
-          <p>Питання 7: Коли Україна отримала незалежність?</p>
-          <input type="text" name="question7" required />
-        </li>
-        <li>
-          <p>Питання 8: Яка найглибша річка в Україні?</p>
-          <input type="text" name="question8" required />
-        </li>
-        <li>
-          <p>Питання 9: Яка найбільша область в Україні?</p>
-          <input type="text" name="question9" required />
-        </li>
-        <li>
-          <p>Питання 10: Яка національна символіка України?</p>
-          <input type="text" name="question10" required />
-        </li>
-        <li>
-          <p>Питання 11: Хто є першим президентом України?</p>
-          <input type="text" name="question11" required />
-        </li>
-        <li>
-          <p>Питання 12: Яка країна є сусідкою України на заході?</p>
-          <input type="text" name="question12" required />
-        </li>
-      </ol>
-      <button type="submit">Перевірити</button>
-    </form>
-    <div id="result"></div>
+    <h1>Тест для 1 класу</h1>
 
-    <div id="error-message" style="display: none" class="error">
-      <button onclick="retryTest()">НЕПРАВИЛЬНО СПРОБУЙТЕ ЩЕ РАЗ 😞</button>
-    </div>
-    <div id="tests-section">
-      <h2>Тести для класів</h2>
-      <div id="countdown-container">
+    <div class="timer">
         <h2>Час до завершення:</h2>
-        <div id="countdown" class="countdown">600</div>
-        <!-- Початкова цифра лічильника -->
-      </div>
-      <!-- Ваші кнопки для тестів тут -->
+        <div id="countdown">60</div> <!-- Зменшено до 1 хвилини -->
     </div>
-    <div id="result"></div>
-    <div id="detailed-results" style="white-space: pre-wrap"></div>
-    <div id="error-message" style="display: none">
-      Помилка: ви не відповіли на всі питання.
+
+    <div class="form-container">
+        <form id="test-form">
+            <ol>
+                <li>
+                    <p>Питання 1: Яка столиця України?</p>
+                    <input type="text" name="question1" required />
+                    <div class="feedback"></div>
+                </li>
+                <li>
+                    <p>Питання 2: Яка річка є найбільшою в Україні?</p>
+                    <input type="text" name="question2" required />
+                    <div class="feedback"></div>
+                </li>
+                <li>
+                    <p>Питання 3: Яка національна валюта України?</p>
+                    <input type="text" name="question3" required />
+                    <div class="feedback"></div>
+                </li>
+                <li>
+                    <p>Питання 4: Яка найбільша гора України?</p>
+                    <input type="text" name="question4" required />
+                    <div class="feedback"></div>
+                </li>
+                <li>
+                    <p>Питання 5: Яка відстань між Києвом та Львовом?</p>
+                    <input type="text" name="question5" required />
+                    <div class="feedback"></div>
+                </li>
+                <li>
+                    <p>Питання 6: Яка основна мова в Україні?</p>
+                    <input type="text" name="question6" required />
+                    <div class="feedback"></div>
+                </li>
+                <li>
+                    <p>Питання 7: Коли Україна отримала незалежність?</p>
+                    <input type="text" name="question7" required />
+                    <div class="feedback"></div>
+                </li>
+                <li>
+                    <p>Питання 8: Яка найглибша річка в Україні?</p>
+                    <input type="text" name="question8" required />
+                    <div class="feedback"></div>
+                </li>
+                <li>
+                    <p>Питання 9: Яка найбільша область в Україні?</p>
+                    <input type="text" name="question9" required />
+                    <div class="feedback"></div>
+                </li>
+                <li>
+                    <p>Питання 10: Яка національна символіка України?</p>
+                    <input type="text" name="question10" required />
+                    <div class="feedback"></div>
+                </li>
+                <li>
+                    <p>Питання 11: Хто є першим президентом України?</p>
+                    <input type="text" name="question11" required />
+                    <div class="feedback"></div>
+                </li>
+                <li>
+                    <p>Питання 12: Яка країна є сусідкою України на заході?</p>
+                    <input type="text" name="question12" required />
+                    <div class="feedback"></div>
+                </li>
+            </ol>
+            <button type="submit">Перевірити</button>
+        </form>
+    </div>
+
+    <div class="results">
+        <div id="result"></div>
+        <div id="detailed-results" style="white-space: pre-wrap"></div>
+    </div>
+
+    <div id="overlay">
+        <h2>Ви з тестом не впорались! Тест завершено.</h2>
     </div>
 
     <script>
-      // Лічильник зворотного відліку
-      let countdownValue = 600; // Початкове значення лічильника (10 хвилин)
-      const countdownElement = document.getElementById("countdown");
+     // Лічильник часу
+let countdownValue = 60; // 1 хвилина
+const countdownElement = document.getElementById("countdown");
+const countdownInterval = setInterval(() => {
+    if (countdownValue > 0) {
+        countdownValue--;
+        const minutes = Math.floor(countdownValue / 60);
+        const seconds = countdownValue % 60;
+        countdownElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 
-      const countdownInterval = setInterval(() => {
-        if (countdownValue > 0) {
-          countdownValue--;
-          const minutes = Math.floor(countdownValue / 60); // Визначаємо кількість хвилин
-          const seconds = countdownValue % 60; // Визначаємо кількість секунд
-          countdownElement.textContent = `${minutes}:${
-            seconds < 10 ? "0" : ""
-          }${seconds}`; // Оновлення значення лічильника
-        } else {
-          clearInterval(countdownInterval); // Зупинка лічильника, коли досягає 0
-          countdownElement.textContent = "Час вичерпано!"; // Повідомлення, коли час закінчується
-          countdownElement.style.color = "#f44336"; // Зміна кольору на червоний
+        // Додати анімацію блимання, якщо залишається менше 30 секунд
+        if (countdownValue <= 30) {
+            countdownElement.classList.add("blinking"); // Додати клас для блимання
         }
-      }, 1000); // Зниження кожну секунду
+    } else {
+        clearInterval(countdownInterval);
+        countdownElement.textContent = "Час вичерпано!";
+        document.getElementById("test-form").style.display = "none"; // Сховати форму
+        document.getElementById("overlay").style.display = "flex"; // Показати червоний фон
+    }
+}, 1000);
 
-      // Масив правильних відповідей
-      const correctAnswersArray = [
-        "Київ", // Питання 1
-        "Дніпро", // Питання 2
-        "Гривня", // Питання 3
-        "Говерла", // Питання 4
-        "790 км", // Питання 5
-        "Українська", // Питання 6
-        "24 серпня 1991 року", // Питання 7
-        "Дністер", // Питання 8
-        "Одеська область", // Питання 9
-        "Синьо-жовтий прапор", // Питання 10
-        "Леонід Кравчук", // Питання 11
-        "Польща", // Питання 12
-      ];
-
-      // Функція перевірки відповідей
-      function checkAnswers() {
-        let correctAnswers = 0;
-        const totalQuestions = 12;
-        const userAnswers = [];
-        let detailedResults = ""; // Зберігатиме текст з правильними та неправильними відповідями
-
-        // Збір відповідей користувача
-        for (let i = 1; i <= totalQuestions; i++) {
-          const answer = document.querySelector(
-            `input[name="question${i}"]:checked`
-          );
-          if (answer) {
-            userAnswers.push(answer.value);
-          } else {
-            userAnswers.push(""); // Додаємо пусту відповідь, якщо вибір не зроблено
-          }
-        }
-
-        // Перевірка відповідей
-        for (let i = 0; i < totalQuestions; i++) {
-          if (userAnswers[i] === correctAnswersArray[i]) {
-            correctAnswers++;
-            detailedResults += `Питання ${i + 1}: ✅ Правильно (${
-              userAnswers[i]
-            })\n`; // Правильна відповідь
-          } else {
-            detailedResults += `Питання ${
-              i + 1
-            }: ❌ Неправильно (Ваша відповідь: ${
-              userAnswers[i]
-            } / Правильна відповідь: ${correctAnswersArray[i]})\n`; // Неправильна відповідь
-          }
-        }
-
-        // Визначення знижки
-        let discount = (correctAnswers / totalQuestions) * 50; // максимум 50%
-
-        // Виведення результатів
-        const resultElement = document.getElementById("result");
-        const detailedResultsElement =
-          document.getElementById("detailed-results");
-        if (correctAnswers === totalQuestions) {
-          resultElement.textContent = `Вітаємо! Ви отримали знижку ${discount.toFixed(
-            0
-          )}% на товари в їдальні! 🎉`;
-          document.getElementById("error-message").style.display = "none"; // Сховати помилку
-        } else {
-          resultElement.textContent = `Ви відповіли правильно на ${correctAnswers} з ${totalQuestions} питань. Ваша знижка: ${discount.toFixed(
-            0
-          )}%.`;
-          document.getElementById("error-message").style.display = "none"; // Сховати помилку
-        }
-
-        // Виведення детальних результатів
-        detailedResultsElement.textContent = detailedResults; // Виводимо деталі по кожному питанню
-      }
-
-      // Функція для обробки форми
-      document
-        .getElementById("test-form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-          checkAnswers();
-        });
-
-      // Функція для повторної спроби тесту
-      function retryTest() {
-        document.getElementById("error-message").style.display = "none"; // Сховати помилку
-        document.getElementById("test-form").reset(); // Очищення відповідей
-        countdownValue = 600; // Скидання лічильника
-        document.getElementById("result").textContent = ""; // Очищення результату
-        document.getElementById("detailed-results").textContent = ""; // Очищення детальних результатів
-      }
     </script>
-  </body>
+</body>
 </html>
